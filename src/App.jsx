@@ -1,30 +1,47 @@
-import Header from "./atoms/Header.jsx";
-import Footer from "./atoms/Footer.jsx";
-import Body from "./organisms/Body.jsx";
+import Header from "./molecules/Header.jsx";
+import Footer from "./molecules/Footer.jsx";
+import Content from "./organisms/Body.jsx";
+import { HashRouter } from "react-router-dom";
 
 import styled from "styled-components";
+
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+
+	html, body {
+		font-family: "Monomaniac One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+		margin: 0;
+		padding: 0;
+		height: 100vh;
+	}
+	footer {
+		position: absolute;
+		bottom: 0px;
+		}
+	}
+`;
 
 const StyledApp = styled.div`
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	background: #fcfcfd;
+	color: #1a1a1a;
 `;
-
-const StyledBody = styled.div`
-	flex: 1 0 auto;
-`;
-
-// Your existing Header and Footer styled components remain the same
 
 function App() {
 	return (
-		<StyledApp>
-			<Header />
-			<StyledBody>
-				<Body />
-			</StyledBody>
-			<Footer />
-		</StyledApp>
+		<HashRouter>
+			<GlobalStyle />
+			<StyledApp>
+				<Header />
+				<Content></Content>
+				<Footer />
+			</StyledApp>
+		</HashRouter>
 	);
 }
 
