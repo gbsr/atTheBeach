@@ -3,6 +3,7 @@ import Header from "./molecules/Header.jsx";
 import Footer from "./molecules/Footer.jsx";
 import ProductContent from "./organisms/Products.jsx";
 import Admin from "./organisms/Administrator.jsx";
+import AdminLogin from "./molecules/Login.jsx";
 import { useRoutes } from "react-router-dom";
 
 import styled from "styled-components";
@@ -46,10 +47,13 @@ function App() {
 			path: "/main",
 			element: <Content />,
 		},
-
+		{
+			path: "beachboys-admin",
+			element: <Admin />,
+		},
 		{
 			path: "/beachboys",
-			element: <Admin />,
+			element: <AdminLogin />,
 		},
 		{
 			path: "/",

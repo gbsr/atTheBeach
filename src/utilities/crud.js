@@ -69,8 +69,16 @@ async function addProductToCategory(categoryId, product) {
 	const categoryDoc = doc(db, 'store', categoryId);
 	const productsRef = collection(categoryDoc, 'products');
 	try {
+		// URL object so we can extra the path instead of the full url
+		const url = new URL(product.imgUrl);
+		// Extract path from the URL object
+		const path = url.pathname;
+		// Store path in the product object
+		product.imgUrl = path;
+		console.log('product.imgUrl:', product.imgUrl);
 		const docRef = await addDoc(productsRef, product);
 		console.log("Document written with ID: ", docRef.id);
+		return docRef;
 	} catch (error) {
 		console.error("Error adding document: ", error);
 	}

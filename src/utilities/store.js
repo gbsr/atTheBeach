@@ -1,12 +1,14 @@
 import { create } from "zustand";
 import { getImageDownloadUrl, getCategories, addProductToCategory, getProductsByCategory, updateProductInCategory, deleteProductFromCategory } from "../utilities/crud.js";
+import { storage } from "../utilities/db.js";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const useStore = create((set) => ({
 	categories: [],
 	products: [],
 	setCategories: (categories) => set(() => ({ categories })),
 	setProducts: (products) => set(() => ({ products })),
-
+	setFile: (file) => set(() => ({ file })),
 
 	fetchCategories: async () => {
 		// Fetch categories from server
@@ -15,17 +17,30 @@ export const useStore = create((set) => ({
 		// Update local state
 		set({ categories });
 	},
-	addProduct: async (categoryId, product) => {
+	// ...state.products, product creates a new array with the current products and adds the new product also. Spread operator, then.
 
-		// ...state.products, product creates a new array with the current products and adds the new product also. Spread operator, then.
+	addProduct: async (categoryId, product, file) => {
+		// Upload file to Firebase storage
+		const fileRef = ref(storage, `${categoryId}/${file.name}`);
+		await uploadBytes(fileRef, file);
+
+		// sonce category constructs a path from gs we need to construct one here
+		const fileUrl = `gs://${fileRef.bucket}/${fileRef.fullPath}`;
+
+		product.imgUrl = fileUrl;
+		console.log('set to', product.imgUrl);
+		// Add product to cat inn db
+		const docRef = await addProductToCategory(categoryId, product);
+
+		product.id = docRef.id;
 		set(state => {
 			const newProducts = [...state.products, product];
 			return { products: newProducts };
 		});
 
-		// Add prod to db
-		await addProductToCategory(categoryId, product);
+		// await addProductToCategory(categoryId, product);
 	},
+
 
 	// gets the catID and the product ID,
 	updateProduct: async (categoryId, productId, updatedProduct) => {

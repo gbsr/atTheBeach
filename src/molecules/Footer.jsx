@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BgWave from "../atoms/Wave.jsx";
+import { Link } from "react-router-dom";
 
 const StyledFooter = styled.footer`
 	color: black;
@@ -16,19 +17,19 @@ const StyledFooterContent = styled.div`
 	height: 100%;
 `;
 
-const StyledFooterText = styled.p`
+const StyledLink = styled(Link)`
 	color: #e7d5ba;
-	font-size: 2rem;
+	font-size: 1.5rem;
+	text-decoration: none;
+	padding: 1rem;
 `;
 
 const Wrapper = styled.div`
 	position: absolute;
-
-	font-size: 3rem;
-	bottom: -2rem;
+	bottom: 0px;
 	width: 100vw;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	flex-direction: row;
 `;
 
@@ -38,7 +39,8 @@ const Footer = () => {
 			<BgWave />
 			<StyledFooterContent>
 				<Wrapper>
-					<StyledFooterText>Home</StyledFooterText>
+					<StyledLink to="/">Home</StyledLink>
+					<StyledLink to="/beachboys">Login</StyledLink>
 				</Wrapper>
 			</StyledFooterContent>
 		</StyledFooter>
