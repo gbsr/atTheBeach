@@ -2256,6 +2256,7 @@ Content-Type: `+u.contentType+`\r
 	align-items: center;
 	max-width: 1200px;
 	margin-bottom: 2rem;
+	padding-top: 8rem;
 `,Qm=()=>{const e=qt(n=>n.categories),t=qt(n=>n.fetchCategories);return C.useEffect(()=>{t()},[]),D.jsx(g4,{children:e.map(n=>D.jsx(dw,{to:`/category/${n.category}`,children:D.jsx(MP,{cat:n,children:n.category})},n.id))})},y4=ae.button`
 	position: fixed;
 	bottom: 120px;
