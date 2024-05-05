@@ -2282,7 +2282,7 @@ Content-Type: `+u.contentType+`\r
 	color: #118ab0;
 `,w4=ae.img`
 	width: 216vw;
-	transform: translateY(4rem) scale(1.1) rotate(3deg);
+	transform: translateY(8rem) scale(1.1) rotate(3deg);
 `,E4=ae.img`
 	width: 260vw;
 `,T4=ae.div`
