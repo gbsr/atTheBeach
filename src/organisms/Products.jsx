@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import useStore from "../utilities/store";
+import AddProduct from "./AddProductForm.jsx";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import EditModal from "./EditModal.jsx";
+import Categories from "../molecules/Categories";
 
 const StyledBody = styled.div`
 	background: #fcfcfd;
@@ -65,7 +69,17 @@ const Content = () => {
 	const products = useStore((state) => state.products);
 	const fetchProducts = useStore((state) => state.fetchProducts);
 	const deleteProduct = useStore((state) => state.deleteProduct);
+	const addProduct = useStore((state) => state.addProduct);
 	const isLoggedIn = useStore((state) => state.isLoggedIn);
+	const [editingProduct, setEditingProduct] = useState(null);
+
+	function handleOpenModal(product) {
+		setEditingProduct(product);
+	}
+
+	function handleCloseModal() {
+		setEditingProduct(null);
+	}
 
 	useEffect(() => {
 		if (category) {
@@ -80,30 +94,37 @@ const Content = () => {
 		}
 	};
 
+	const handleAddProduct = async (categoryId, product, file) => {
+		await addProduct(categoryId, product, file);
+		await fetchProducts(category);
+	};
+
 	return (
 		<StyledBody>
+			<Categories />
 			<StyledProduct>
-				{products.map(
-					(product) => (
-						console.log("product:", product.id),
-						console.log("category:", product.categoryId),
-						(
-							<Card key={product.id}>
-								<Product>
-									{product.name}
-									<ProductImage src={product.imageUrl} alt={product.name} />
-									{product.price}
-									{isLoggedIn && (
-										<DeleteButton type="button" onClick={() => handleDelete(product)}>
-											Delete
-										</DeleteButton>
-									)}
-								</Product>
-								<Product>{product.desc}</Product>
-							</Card>
-						)
-					)
-				)}
+				{isLoggedIn && <AddProduct onAddProduct={handleAddProduct} />}
+				{products.map((product) => (
+					<Card key={product.id}>
+						<Product>
+							{product.name}
+							<ProductImage src={product.imageUrl} alt={product.name} />
+							{product.price}
+							{isLoggedIn && (
+								<>
+									<DeleteButton type="button" onClick={() => handleDelete(product)}>
+										Delete
+									</DeleteButton>
+									<button type="button" onClick={() => handleOpenModal(product)}>
+										Edit
+									</button>
+								</>
+							)}
+						</Product>
+						<Product>{product.desc}</Product>
+					</Card>
+				))}
+				{editingProduct && <EditModal product={editingProduct} onClose={handleCloseModal} />}
 			</StyledProduct>
 		</StyledBody>
 	);

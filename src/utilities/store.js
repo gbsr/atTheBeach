@@ -47,7 +47,9 @@ export const useStore = create((set) => ({
 
 	// gets the catID and the product ID,
 	updateProduct: async (categoryId, productId, updatedProduct) => {
-
+		console.log('categoryId:', categoryId);
+		console.log('productId:', productId);
+		console.log('updatedProduct:', updatedProduct);
 		// Update product in local state
 		set(state => {
 			// creates a new array of the products, and then uses ? to check if they match id, 

@@ -9,13 +9,6 @@ const StyledCategory = styled.div`
 	color: #e7d5ba;
 	letter-spacing: 0.1rem;
 	width: 180px;
-
-	@media (max-width: 568px) {
-		width: 100px;
-		height: 80px;
-		font-size: 0.8rem;
-		justify-content: center;
-		align-items: center;
 `;
 
 const CategoryWrapper = ({ imageUrl, children }) => (
