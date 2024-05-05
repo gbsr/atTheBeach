@@ -1,7 +1,9 @@
+import Content from "./organisms/Body.jsx";
 import Header from "./molecules/Header.jsx";
 import Footer from "./molecules/Footer.jsx";
-import Content from "./organisms/Body.jsx";
-import { HashRouter } from "react-router-dom";
+import ProductContent from "./organisms/Products.jsx";
+import Admin from "./organisms/Administrator.jsx";
+import { useRoutes } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -16,6 +18,12 @@ const GlobalStyle = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 		height: 100vh;
+		overflow-x: hidden;
+		
+	}
+
+	a {
+		text-decoration: none;
 	}
 	footer {
 		position: absolute;
@@ -33,15 +41,35 @@ const StyledApp = styled.div`
 `;
 
 function App() {
+	const element = useRoutes([
+		{
+			path: "/main",
+			element: <Content />,
+		},
+
+		{
+			path: "/beachboys",
+			element: <Admin />,
+		},
+		{
+			path: "/",
+			element: <Content />,
+		},
+		{
+			path: "/category/:category",
+			element: <ProductContent />,
+		},
+	]);
+
 	return (
-		<HashRouter>
+		<>
 			<GlobalStyle />
 			<StyledApp>
 				<Header />
-				<Content></Content>
+				{element}
 				<Footer />
 			</StyledApp>
-		</HashRouter>
+		</>
 	);
 }
 

@@ -1,20 +1,12 @@
 import styled from "styled-components";
-import splash from "../assets/img/misc/splash.svg";
 import waveBottom from "../assets/img/body/waves.svg";
 import waveTop from "../assets/img/body/wavesNegative.svg";
-
-const Splash = styled.img`
-	margin: 0 auto;
-	height: 12rem;
-	width: 100%;
-`;
+import Categories from "../molecules/Categories";
 
 const StyledBody = styled.div`
 	background: #fcfcfd;
 	width: 100vw;
-	height: fit-content;
 	position: relative;
-	overflow: hidden;
 `;
 
 const StyledText = styled.div`
@@ -22,7 +14,6 @@ const StyledText = styled.div`
 	max-width: 1200px;
 	font-size: 3rem;
 	margin: 0 auto;
-	padding-bottom: 10rem;
 	color: #118ab0;
 `;
 
@@ -37,7 +28,7 @@ const LeftText = styled.p`
 
 const StyledWaveTop = styled.img`
 	width: 216vw;
-	height: 16rem;
+	height: 18rem;
 	transform: rotate(3deg) translateY(8rem);
 `;
 const StyledWaveBottom = styled.img`
@@ -53,7 +44,7 @@ const TextContainer = styled.div`
 	width: 100%;
 	max-width: 1600px;
 	position: relative;
-	top: 7rem;
+	// top: 7rem;
 	padding-bottom: 14rem;
 `;
 
@@ -71,13 +62,13 @@ const RightText = styled.p`
 
 const WaveContainer = styled.div`
 	width: 100%;
-	padding-top: 14rem;
+	padding-top: 6rem;
 `;
 
 const Spacer = styled.div`
 	transform: translateY(-1rem);
 	width: 100vw;
-	height: 20rem;
+	height: 23rem;
 	background: #118ab0;
 `;
 
@@ -89,7 +80,6 @@ const StyledP = styled.p`
 const Content = () => {
 	return (
 		<StyledBody>
-			<Splash src={splash} alt="splash" />
 			<WaveContainer>
 				<TextContainer>
 					<LeftText>Badass Beach Day Essentials</LeftText>
@@ -111,6 +101,7 @@ const Content = () => {
 					cool.
 				</StyledP>
 			</StyledText>
+			<Categories />
 		</StyledBody>
 	);
 };

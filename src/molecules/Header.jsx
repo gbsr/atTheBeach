@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Logo from "../atoms/Logo.jsx";
 import WaveTop from "../atoms/WaveTop.jsx";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.header`
 	position: sticky;
-	top: 0;
+	top: -33px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -15,10 +16,15 @@ const StyledHeader = styled.header`
 `;
 
 const Header = () => {
+	const navigate = useNavigate();
+
+	const handleClick = () => {
+		navigate("/");
+	};
 	return (
 		<StyledHeader>
 			<WaveTop />
-			<Logo />
+			<Logo onClick={handleClick} />
 		</StyledHeader>
 	);
 };

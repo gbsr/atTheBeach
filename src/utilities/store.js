@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { addProductToCategory, getProductsByCategory, updateProductInCategory, deleteProductFromCategory } from "../utilities/crud.js";
+import { getImageDownloadUrl, getCategories, addProductToCategory, getProductsByCategory, updateProductInCategory, deleteProductFromCategory } from "../utilities/crud.js";
 
 export const useStore = create((set) => ({
 	categories: [],
@@ -8,6 +8,13 @@ export const useStore = create((set) => ({
 	setProducts: (products) => set(() => ({ products })),
 
 
+	fetchCategories: async () => {
+		// Fetch categories from server
+		const categories = await getCategories();
+
+		// Update local state
+		set({ categories });
+	},
 	addProduct: async (categoryId, product) => {
 
 		// ...state.products, product creates a new array with the current products and adds the new product also. Spread operator, then.
@@ -47,10 +54,18 @@ export const useStore = create((set) => ({
 		await deleteProductFromCategory(categoryId, productId);
 	},
 	fetchProducts: async (categoryId) => {
-		// Fetch products from Firebase
-		const products = await getProductsByCategory(categoryId);
+		// Get all products in cat
+		let products = await getProductsByCategory(categoryId);
+
+		// Get the imgrl
+		products = await Promise.all(products.map(async product => {
+			const imageUrl = await getImageDownloadUrl(product.imgUrl);
+			return { ...product, imageUrl };
+		}));
 
 		// Update local state
 		set({ products });
 	},
 }));
+
+export default useStore;

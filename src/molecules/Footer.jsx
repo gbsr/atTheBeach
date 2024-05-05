@@ -16,7 +16,10 @@ const StyledFooterContent = styled.div`
 	height: 100%;
 `;
 
-const StyledFooterText = styled.p``;
+const StyledFooterText = styled.p`
+	color: #e7d5ba;
+	font-size: 2rem;
+`;
 
 const Wrapper = styled.div`
 	position: absolute;

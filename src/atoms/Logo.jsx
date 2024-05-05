@@ -14,13 +14,11 @@ const StyledHeader = styled.div`
 	height: 268px;
 	z-index: 10;
 	opacity: 0.95;
-	@media (max-width: 768px) {
-		height: 50%;
-		background-size: contain;
-		`;
+	cursor: pointer;
+`;
 
-const Logo = () => {
-	return <StyledHeader />;
+const Logo = ({ onClick }) => {
+	return <StyledHeader onClick={onClick} />;
 };
 
 export default Logo;

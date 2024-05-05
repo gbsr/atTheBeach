@@ -2,13 +2,17 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Category from "../atoms/Category.jsx";
-import useStore from "../store";
+import useStore from "../utilities/store.js";
 
 const StyledCategories = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: wrap;
+	font-size: 1.5rem;
+	gap: 1rem;
+	justify-content: center;
 	align-items: center;
-	max-width: 300px;
+	max-width: 1200px;
 	max-height: 300px;
 `;
 
@@ -18,15 +22,14 @@ const Categories = () => {
 
 	useEffect(() => {
 		fetchCategories();
-	}, [fetchCategories]);
+	}, []);
 
 	return (
 		<StyledCategories>
-			<h1>Categories</h1>
 			{categories.map((cat) => (
-				<Category key={cat.id} cat={cat.category}>
-					<Link to={`/category/${cat.id}`}>{cat.category}</Link>
-				</Category>
+				<Link to={`/category/${cat.category}`} key={cat.id}>
+					<Category cat={cat}>{cat.category}</Category>
+				</Link>
 			))}
 		</StyledCategories>
 	);
