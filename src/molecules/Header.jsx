@@ -5,14 +5,17 @@ import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.header`
 	position: sticky;
-	top: -33px;
+	top: -10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	width: 100vw;
-	height: 268px;
+	height: 210px;
 	z-index: 10;
 	opacity: 0.95;
+	@media (max-width: 568px) {
+		height: 158px;
+	}
 `;
 
 const Header = () => {

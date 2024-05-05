@@ -51,31 +51,61 @@ const ProductImage = styled.img`
 	}
 `;
 
+const DeleteButton = styled.button`
+	background: #ff0000;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	padding: 0.5rem;
+	cursor: pointer;
+`;
+
 const Content = () => {
 	const { category } = useParams();
 	const products = useStore((state) => state.products);
 	const fetchProducts = useStore((state) => state.fetchProducts);
+	const deleteProduct = useStore((state) => state.deleteProduct);
+	const isLoggedIn = useStore((state) => state.isLoggedIn);
 
 	useEffect(() => {
-		fetchProducts(category);
+		if (category) {
+			fetchProducts(category);
+		}
 	}, [category, fetchProducts]);
+
+	const handleDelete = async (product) => {
+		if (product) {
+			await deleteProduct(product.categoryId, product.id);
+			await fetchProducts(category);
+		}
+	};
 
 	return (
 		<StyledBody>
 			<StyledProduct>
-				{products.map((product) => (
-					<Card key={product.id}>
-						<Product>
-							{product.name}
-							<ProductImage src={product.imageUrl} alt={product.name} />
-							{product.price}
-						</Product>
-						<Product>{product.desc}</Product>
-					</Card>
-				))}
+				{products.map(
+					(product) => (
+						console.log("product:", product.id),
+						console.log("category:", product.categoryId),
+						(
+							<Card key={product.id}>
+								<Product>
+									{product.name}
+									<ProductImage src={product.imageUrl} alt={product.name} />
+									{product.price}
+									{isLoggedIn && (
+										<DeleteButton type="button" onClick={() => handleDelete(product)}>
+											Delete
+										</DeleteButton>
+									)}
+								</Product>
+								<Product>{product.desc}</Product>
+							</Card>
+						)
+					)
+				)}
 			</StyledProduct>
 		</StyledBody>
 	);
 };
-
 export default Content;

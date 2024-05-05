@@ -14,6 +14,7 @@ const StyledCategories = styled.div`
 	align-items: center;
 	max-width: 1200px;
 	max-height: 300px;
+	margin-bottom: 10rem;
 `;
 
 const Categories = () => {

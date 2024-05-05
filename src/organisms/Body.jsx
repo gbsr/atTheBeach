@@ -12,7 +12,7 @@ const StyledBody = styled.div`
 const StyledText = styled.div`
 	padding: 1rem;
 	max-width: 1200px;
-	font-size: 3rem;
+	font-size: 2rem;
 	margin: 0 auto;
 	color: #118ab0;
 `;
@@ -50,7 +50,7 @@ const TextContainer = styled.div`
 
 const RightText = styled.p`
 	padding-right: 4rem;
-	font-size: 4rem;
+	font-size: 3rem;
 	transform: rotate(-1.07deg);
 	color: #edddc8;
 	z-index: 1;
@@ -73,8 +73,8 @@ const Spacer = styled.div`
 `;
 
 const StyledP = styled.p`
-	font-size: 3rem;
 	padding: 1rem;
+	font-size: clamp(2rem, 2vw, 2.5rem);
 `;
 
 const Content = () => {

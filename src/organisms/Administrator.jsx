@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useStore } from "../utilities/store.js";
+import Categories from "../molecules/Categories";
 
 const StyledBody = styled.div`
 	background: #fcfcfd;
@@ -17,7 +18,7 @@ const Container = styled.div`
 `;
 
 const Content = () => {
-	const { setFile, addProduct } = useStore();
+	const { setFile, addProduct, file } = useStore();
 	const [product, setProduct] = useState({
 		name: "",
 		desc: "",
@@ -34,8 +35,6 @@ const Content = () => {
 			});
 		}
 	}
-
-	const { file } = useStore();
 
 	async function handleSubmit(event) {
 		event.preventDefault();
@@ -63,6 +62,7 @@ const Content = () => {
 					<input type="text" name="desc" placeholder="Product description" onChange={handleChange} />
 					<input type="text" name="price" placeholder="Product price" onChange={handleChange} />
 					<input type="text" name="category" placeholder="Product category" onChange={handleChange} />
+					<Categories />
 				</form>
 			</Container>
 		</StyledBody>

@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   font-style: normal;
 		margin: 0;
 		padding: 0;
-		height: 100vh;
+		height: 97vh;
 		overflow-x: hidden;
 		
 	}

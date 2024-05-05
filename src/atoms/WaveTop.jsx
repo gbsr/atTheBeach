@@ -5,6 +5,9 @@ const StyledWave = styled.img`
 	width: 100vw;
 	position: absolute;
 	top: 0;
+
+	@media (max-width: 568px) {
+		scale: 170%;
 `;
 
 const WaveTop = () => {

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BgWave from "../atoms/Wave.jsx";
 import { Link } from "react-router-dom";
+import { useStore } from "../utilities/store.js";
 
 const StyledFooter = styled.footer`
 	color: black;
@@ -8,7 +9,7 @@ const StyledFooter = styled.footer`
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	height: 180px;
+	height: 80px;
 	z-index: 10;
 `;
 
@@ -34,13 +35,26 @@ const Wrapper = styled.div`
 `;
 
 const Footer = () => {
+	const isLoggedIn = useStore((state) => state.isLoggedIn);
+	const logOut = useStore((state) => state.logOut);
+
+	const handleLogOut = () => {
+		logOut();
+	};
+
 	return (
 		<StyledFooter>
 			<BgWave />
 			<StyledFooterContent>
 				<Wrapper>
 					<StyledLink to="/">Home</StyledLink>
-					<StyledLink to="/beachboys">Login</StyledLink>
+					{isLoggedIn ? (
+						<StyledLink to="/" onClick={handleLogOut}>
+							Logout
+						</StyledLink>
+					) : (
+						<StyledLink to="/beachboys">Login</StyledLink>
+					)}
 				</Wrapper>
 			</StyledFooterContent>
 		</StyledFooter>

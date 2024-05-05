@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { useStore } from "../utilities/store";
 
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const isLoggedIn = useStore((state) => state.isLoggedIn);
+	const logIn = useStore((state) => state.logIn);
 
 	const handleLogin = () => {
 		if (username === "admin" && password === "password") {
 			console.log("Login successful");
-			setIsLoggedIn(true);
+			logIn();
 		} else {
 			setError("Invalid username or password");
 		}

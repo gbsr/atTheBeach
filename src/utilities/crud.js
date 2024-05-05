@@ -112,6 +112,10 @@ async function updateProductInCategory(categoryId, productId, updatedProduct) {
 }
 
 async function deleteProductFromCategory(categoryId, productId) {
+	// makw sure categoryId and productId are strings
+	if (typeof categoryId !== 'string' || typeof productId !== 'string') {
+		throw new Error('categoryId and productId must be strings');
+	}
 	const categoryDoc = doc(db, 'store', categoryId);
 	const productDoc = doc(categoryDoc, 'products', productId);
 	try {

@@ -15,6 +15,10 @@ const StyledHeader = styled.div`
 	z-index: 10;
 	opacity: 0.95;
 	cursor: pointer;
+
+	@media (max-width: 568px) {
+		background-size: 50%;
+	}
 `;
 
 const Logo = ({ onClick }) => {

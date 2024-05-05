@@ -1,14 +1,17 @@
 import { create } from "zustand";
 import { getImageDownloadUrl, getCategories, addProductToCategory, getProductsByCategory, updateProductInCategory, deleteProductFromCategory } from "../utilities/crud.js";
 import { storage } from "../utilities/db.js";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes } from "firebase/storage";
 
 export const useStore = create((set) => ({
 	categories: [],
 	products: [],
+	isLoggedIn: false,
 	setCategories: (categories) => set(() => ({ categories })),
 	setProducts: (products) => set(() => ({ products })),
 	setFile: (file) => set(() => ({ file })),
+	logIn: () => set(() => ({ isLoggedIn: true })),
+	logOut: () => set(() => ({ isLoggedIn: false })),
 
 	fetchCategories: async () => {
 		// Fetch categories from server
@@ -59,19 +62,21 @@ export const useStore = create((set) => ({
 		await updateProductInCategory(categoryId, productId, updatedProduct);
 	},
 	deleteProduct: async (categoryId, productId) => {
-		// Delete product from local state
-		set(state => {
-			const remainingProducts = state.products.filter(product => product.id !== productId);
-			return { products: remainingProducts };
-		});
-
 		// Delete product from Firebase
-		await deleteProductFromCategory(categoryId, productId);
+		await deleteProductFromCategory(categoryId, productId)
+			.then(() => {
+				// Delete product from local state
+				set(state => {
+					const remainingProducts = state.products.filter(product => product.id !== productId);
+					return { products: remainingProducts };
+				});
+			});
 	},
 	fetchProducts: async (categoryId) => {
 		// Get all products in cat
 		let products = await getProductsByCategory(categoryId);
-
+		// add categoryId to each product (hax to fix delete bug)
+		products = products.map(product => ({ ...product, categoryId }));
 		// Get the imgrl
 		products = await Promise.all(products.map(async product => {
 			const imageUrl = await getImageDownloadUrl(product.imgUrl);
