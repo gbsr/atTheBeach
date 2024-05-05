@@ -13,8 +13,7 @@ const StyledCategories = styled.div`
 	justify-content: center;
 	align-items: center;
 	max-width: 1200px;
-	max-height: 300px;
-	margin-bottom: 10rem;
+	margin-bottom: 2rem;
 `;
 
 const Categories = () => {

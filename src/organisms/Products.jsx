@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import EditModal from "./EditModal.jsx";
 import Categories from "../molecules/Categories";
+import ScrollToTopButton from "../atoms/ScrollButton.jsx";
 
 const StyledBody = styled.div`
 	background: #fcfcfd;
@@ -48,6 +49,7 @@ const ProductImage = styled.img`
 	max-width: 380px;
 	max-height: 380px;
 	border-radius: 10px;
+	border: 1px solid rgb(40 129 168);
 
 	@media (max-width: 720px) {
 		max-width: 180px;
@@ -126,6 +128,7 @@ const Content = () => {
 				))}
 				{editingProduct && <EditModal product={editingProduct} onClose={handleCloseModal} />}
 			</StyledProduct>
+			<ScrollToTopButton />
 		</StyledBody>
 	);
 };

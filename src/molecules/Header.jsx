@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
 	justify-content: center;
 	width: 100vw;
 	height: 210px;
-	z-index: 10;
+	z-index: 10000;
 	opacity: 0.95;
 	@media (max-width: 568px) {
 		height: 158px;
