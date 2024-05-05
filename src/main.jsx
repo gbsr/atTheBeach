@@ -4,8 +4,6 @@ import App from "./App.jsx";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import Content from "./organisms/Body.jsx";
-import ProductContent from "./organisms/Products.jsx";
-import Admin from "./organisms/Administrator.jsx";
 
 const router = createHashRouter([
 	{
@@ -16,14 +14,6 @@ const router = createHashRouter([
 				// we use index that tell the router that this is the default page
 				index: true,
 				element: <Content />,
-			},
-			{
-				path: "products",
-				element: <ProductContent />,
-			},
-			{
-				path: "beachboys",
-				element: <Admin />,
 			},
 		],
 	},
