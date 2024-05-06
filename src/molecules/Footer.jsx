@@ -2,6 +2,22 @@ import styled from "styled-components";
 import BgWave from "../atoms/Wave.jsx";
 import { Link } from "react-router-dom";
 import { useStore } from "../utilities/store.js";
+import CartModal from "../organisms/CartModal.jsx";
+import CartIcon from "../assets/img/misc/cart.svg";
+
+const Cart = styled.img`
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+	transform: translateY(0.5rem);
+`;
+
+const CartButton = styled.button`
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+`;
 
 const StyledFooter = styled.footer`
 	color: black;
@@ -37,9 +53,15 @@ const Wrapper = styled.div`
 const Footer = () => {
 	const isLoggedIn = useStore((state) => state.isLoggedIn);
 	const logOut = useStore((state) => state.logOut);
+	const setCartModalIsOpen = useStore((state) => state.setCartModalIsOpen);
+	const cartModalIsOpen = useStore((state) => state.cartModalIsOpen);
 
 	const handleLogOut = () => {
 		logOut();
+	};
+
+	const handleCart = () => {
+		setCartModalIsOpen(true);
 	};
 
 	return (
@@ -48,6 +70,9 @@ const Footer = () => {
 			<StyledFooterContent>
 				<Wrapper>
 					<StyledLink to="/">Home</StyledLink>
+					<CartButton onClick={handleCart}>
+						<Cart src={CartIcon} alt="Cart" />
+					</CartButton>
 					{isLoggedIn ? (
 						<StyledLink to="/" onClick={handleLogOut}>
 							Logout
@@ -57,6 +82,7 @@ const Footer = () => {
 					)}
 				</Wrapper>
 			</StyledFooterContent>
+			{cartModalIsOpen && <CartModal />}
 		</StyledFooter>
 	);
 };

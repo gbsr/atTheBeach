@@ -8,12 +8,20 @@ import EditModal from "./EditModal.jsx";
 import Categories from "../molecules/Categories";
 import ScrollToTopButton from "../atoms/ScrollButton.jsx";
 import Cart from "../assets/img/misc/cart.svg";
+import products from "../utilities/store.js";
 
 const AddToCart = styled.img`
 	width: 80px;
 	height: 80px;
 	cursor: pointer;
 	transform: translateY(-0.5rem);
+`;
+
+const AddToCartButton = styled.button`
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
 `;
 
 const StyledBody = styled.div`
@@ -115,6 +123,10 @@ const Content = () => {
 		await fetchProducts(category);
 	};
 
+	const handleAddToCart = (products) => {
+		console.log(products);
+	};
+
 	return (
 		<StyledBody>
 			<Categories />
@@ -127,7 +139,9 @@ const Content = () => {
 							<ProductImage src={product.imageUrl} alt={product.name} />
 							<PriceWrapper>
 								{product.price}
-								<AddToCart src={Cart} alt="Add Product to Cart" />
+								<AddToCartButton onClick={() => handleAddToCart(products)}>
+									<AddToCart src={Cart} alt="Add Product to Cart" />
+								</AddToCartButton>
 							</PriceWrapper>
 							{isLoggedIn && (
 								<>
