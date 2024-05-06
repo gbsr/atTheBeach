@@ -21,7 +21,7 @@ const LeftText = styled.p`
 
 const StyledWaveTop = styled.img`
 	width: 216vw;
-	transform: translateY(8rem) scale(1.1) rotate(3deg);
+	transform: translateY(5rem) scale(1.1) rotate(3deg);
 `;
 const StyledWaveBottom = styled.img`
 	width: 260vw;
