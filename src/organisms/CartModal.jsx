@@ -1,5 +1,6 @@
 import { useStore } from "../utilities/store";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Modal = styled.div`
 	position: fixed;
@@ -136,10 +137,6 @@ const CartModal = () => {
 		console.log("trying to close modal");
 	};
 
-	const handleCheckout = () => {
-		console.log("checkout");
-	};
-
 	return (
 		<Modal>
 			<ModalContent>
@@ -166,7 +163,9 @@ const CartModal = () => {
 				)}
 				<CheckoutWrapper>
 					<CloseButton onClick={handleClose}>Close</CloseButton>
-					<CheckoutButton onClick={handleCheckout}>Checkout</CheckoutButton>
+					<Link to="/checkout">
+						<CheckoutButton>Checkout</CheckoutButton>
+					</Link>
 				</CheckoutWrapper>
 			</ModalContent>
 		</Modal>
