@@ -6,6 +6,7 @@ import useStore from "../utilities/store.js";
 
 const StyledCategories = styled.div`
 	display: flex;
+	margin: 0 auto;
 	flex-direction: row;
 	flex-wrap: wrap;
 	font-size: 1.5rem;
