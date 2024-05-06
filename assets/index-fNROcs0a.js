@@ -2289,10 +2289,10 @@ Content-Type: `+u.contentType+`\r
 	transform: scale(1.1) rotate(3deg);
 `,CV=B.img`
 	width: 260vw;
-	transform: translateY(-5rem);
+	transform: translateY(-8rem);
 `,RV=B.div`
 	background: #118ab0;
-	transform: translatey(-5rem);
+	transform: translatey(-8rem);
 	padding-block: 1rem;
 	width: 100%;
 `,AV=B.p`
