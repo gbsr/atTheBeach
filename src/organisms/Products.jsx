@@ -61,6 +61,8 @@ const StyledBody = styled.div`
 	height: fit-content;
 	position: relative;
 	overflow: hidden;
+	max-width: 800px;
+	margin: 0 auto;
 `;
 
 const StyledProduct = styled.div`
@@ -80,12 +82,14 @@ const Product = styled.div`
 	display: flex;
 	gap: 1rem;
 	flex-direction: column;
+	align-items: center;
 `;
 
 const Card = styled.div`
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
+	align-items: center;
 
 	@media (max-width: 568px) {
 		flex-direction: column;

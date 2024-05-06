@@ -6,6 +6,7 @@ import useStore from "../utilities/store.js";
 
 const StyledCategories = styled.div`
 	display: flex;
+	padding-top: 6rem;
 	margin: 0 auto;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -15,7 +16,7 @@ const StyledCategories = styled.div`
 	align-items: center;
 	max-width: 1200px;
 	margin-bottom: 2rem;
-	padding-top: 8rem;
+	transform: translateY(-5rem);
 `;
 
 const Categories = () => {
