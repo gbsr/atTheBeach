@@ -18,10 +18,10 @@ const Modal = styled.div`
 const ModalContent = styled.div`
 	background-color: white;
 	padding: 20px;
-	margin-top: 8rem;
+	margin-top: 12rem;
 	border-radius: 10px;
 	width: 80vw;
-	height: 70vh;
+	height: 67vh;
 	font-size: 1, 5rem;
 	overflow-y: auto;
 	overflow-x: hidden;
