@@ -68,6 +68,8 @@ const StyledP = styled.p`
 	padding: 1rem;
 	font-size: clamp(2rem, 2vw, 2.5rem);
 	color: #118ab0;
+	max-width: 1200px;
+	margin: 0 auto;
 `;
 
 const Content = () => {
