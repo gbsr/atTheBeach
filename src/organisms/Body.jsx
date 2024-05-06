@@ -70,6 +70,7 @@ const StyledP = styled.p`
 	color: #118ab0;
 	max-width: 1200px;
 	margin: 0 auto;
+	padding-bottom: 6rem;
 `;
 
 const Content = () => {
