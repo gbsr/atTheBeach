@@ -100,10 +100,23 @@ const Checkout = () => {
 			</label>
 			<label>
 				Phone Number
-				<input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
-				{errors.phone && <p>{errors.phone}</p>}
+				<input
+					type="tel"
+					name="phone"
+					placeholder="Phone (xxx-xxx-xxx)"
+					required
+					pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+					onInvalid={(e) => {
+						e.target.setCustomValidity("Please enter a phone number in the format XXX-XXX-XXXX");
+					}}
+					onChange={(e) => {
+						e.target.setCustomValidity("");
+					}}
+				/>
 			</label>
-			<CheckoutButton type="submit">Checkout</CheckoutButton>
+			<Link to="/">
+				<CheckoutButton type="submit">Checkout</CheckoutButton>
+			</Link>
 			<Link to="/">
 				<CancelButton>Cancel</CancelButton>
 			</Link>
