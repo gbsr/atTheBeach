@@ -7,6 +7,14 @@ import { useState } from "react";
 import EditModal from "./EditModal.jsx";
 import Categories from "../molecules/Categories";
 import ScrollToTopButton from "../atoms/ScrollButton.jsx";
+import Cart from "../assets/img/misc/cart.svg";
+
+const AddToCart = styled.img`
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+	transform: translateY(-0.5rem);
+`;
 
 const StyledBody = styled.div`
 	background: #fcfcfd;
@@ -66,6 +74,12 @@ const DeleteButton = styled.button`
 	cursor: pointer;
 `;
 
+const PriceWrapper = styled.div`
+	display: flex;
+	flex-direciton: row;
+	gap: 2rem;
+`;
+
 const Content = () => {
 	const { category } = useParams();
 	const products = useStore((state) => state.products);
@@ -111,7 +125,10 @@ const Content = () => {
 						<Product>
 							{product.name}
 							<ProductImage src={product.imageUrl} alt={product.name} />
-							{product.price}
+							<PriceWrapper>
+								{product.price}
+								<AddToCart src={Cart} alt="Add Product to Cart" />
+							</PriceWrapper>
 							{isLoggedIn && (
 								<>
 									<DeleteButton type="button" onClick={() => handleDelete(product)}>
