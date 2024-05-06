@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { useStore } from "../utilities/store.js";
 import { Link } from "react-router-dom";
 
 const StyledForm = styled.form`
@@ -10,11 +9,15 @@ const StyledForm = styled.form`
 	padding-bottom: 2rem;
 	padding-top: 10rem;
 	max-width: 480px;
-	height: 96vh;
 	font-family: "Monomaniac One", sans-serif;
 	letter-spacing: 1px;
 	font-size: 1.5rem;
 	margin: 0 auto;
+	overflow-y: hidden;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 `;
 
 const CheckoutButton = styled.button`

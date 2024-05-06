@@ -28,7 +28,7 @@ const Categories = () => {
 	return (
 		<StyledCategories>
 			{categories.map((cat) => (
-				<Link to={`/category/${cat.category}`} key={cat.id}>
+				<Link to={`/category/${cat.category}#products`} key={cat.id}>
 					<Category cat={cat}>{cat.category}</Category>
 				</Link>
 			))}

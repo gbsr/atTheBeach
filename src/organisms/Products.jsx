@@ -131,7 +131,7 @@ const Content = () => {
 	return (
 		<StyledBody>
 			<Categories />
-			<StyledProduct>
+			<StyledProduct id="products">
 				{isLoggedIn && <AddProduct onAddProduct={handleAddProduct} />}
 				{products.map((product) => (
 					<Card key={product.id}>
