@@ -8,13 +8,44 @@ import EditModal from "./EditModal.jsx";
 import Categories from "../molecules/Categories";
 import ScrollToTopButton from "../atoms/ScrollButton.jsx";
 import Cart from "../assets/img/misc/cart.svg";
-import products from "../utilities/store.js";
+import { keyframes } from "styled-components";
+
+const greenTint = keyframes`
+  0% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: sepia() saturate(10000%) hue-rotate(90deg) brightness(50%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+`;
+
+const shake = keyframes`
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+`;
 
 const AddToCart = styled.img`
 	width: 80px;
 	height: 80px;
 	cursor: pointer;
 	transform: translateY(-0.5rem);
+
+	&:active {
+		animation: ${greenTint} 0.75s ease-in-out;
+		animation: ${shake} 0.5s linear;
+	}
 `;
 
 const AddToCartButton = styled.button`
