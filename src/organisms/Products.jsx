@@ -96,6 +96,7 @@ const Content = () => {
 	const addProduct = useStore((state) => state.addProduct);
 	const isLoggedIn = useStore((state) => state.isLoggedIn);
 	const [editingProduct, setEditingProduct] = useState(null);
+	const addToCart = useStore((state) => state.addToCart);
 
 	function handleOpenModal(product) {
 		setEditingProduct(product);
@@ -123,8 +124,8 @@ const Content = () => {
 		await fetchProducts(category);
 	};
 
-	const handleAddToCart = (products) => {
-		console.log(products);
+	const handleAddToCart = (product) => {
+		addToCart(product);
 	};
 
 	return (
@@ -139,7 +140,7 @@ const Content = () => {
 							<ProductImage src={product.imageUrl} alt={product.name} />
 							<PriceWrapper>
 								{product.price}
-								<AddToCartButton onClick={() => handleAddToCart(products)}>
+								<AddToCartButton onClick={() => handleAddToCart(product)}>
 									<AddToCart src={Cart} alt="Add Product to Cart" />
 								</AddToCartButton>
 							</PriceWrapper>

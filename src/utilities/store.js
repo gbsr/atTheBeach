@@ -6,6 +6,7 @@ import { ref, uploadBytes } from "firebase/storage";
 export const useStore = create((set) => ({
 	categories: [],
 	products: [],
+	cart: [],
 	isLoggedIn: false,
 	cartModalIsOpen: false,
 	setCartModalIsOpen: (isOpen) => set({ cartModalIsOpen: isOpen }),
