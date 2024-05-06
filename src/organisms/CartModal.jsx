@@ -12,6 +12,7 @@ const Modal = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 100000000;
 `;
 
 const ModalContent = styled.div`
@@ -137,6 +138,9 @@ const CartModal = () => {
 		console.log("trying to close modal");
 	};
 
+	const handleCheckout = () => {
+		setCartModalIsOpen(false);
+	};
 	return (
 		<Modal>
 			<ModalContent>
@@ -163,7 +167,7 @@ const CartModal = () => {
 				)}
 				<CheckoutWrapper>
 					<CloseButton onClick={handleClose}>Close</CloseButton>
-					<Link to="/checkout">
+					<Link to="/checkout" onClick={handleCheckout}>
 						<CheckoutButton>Checkout</CheckoutButton>
 					</Link>
 				</CheckoutWrapper>

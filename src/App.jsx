@@ -4,6 +4,7 @@ import Footer from "./molecules/Footer.jsx";
 import ProductContent from "./organisms/Products.jsx";
 import Admin from "./organisms/Administrator.jsx";
 import AdminLogin from "./molecules/Login.jsx";
+import Checkout from "./organisms/Checkout.jsx";
 import { useRoutes } from "react-router-dom";
 
 import styled from "styled-components";
@@ -58,6 +59,10 @@ function App() {
 		{
 			path: "/",
 			element: <Content />,
+		},
+		{
+			path: "checkout",
+			element: <Checkout />,
 		},
 		{
 			path: "/category/:category",
