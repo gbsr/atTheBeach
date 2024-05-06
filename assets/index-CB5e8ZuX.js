@@ -2321,6 +2321,7 @@ Content-Type: `+u.contentType+`\r
 	color: #118ab0;
 	max-width: 1200px;
 	margin: 0 auto;
+	padding-bottom: 6rem;
 `,Mf=()=>I.jsxs(E3,{children:[I.jsx(C3,{className:"LeftTextContainer",children:I.jsx(T3,{className:"Text",children:"Badass Beach Day Essentials"})}),I.jsxs(P3,{children:[I.jsx(S3,{src:oC}),I.jsx(R3,{children:I.jsx(A3,{children:"with a twist of the classics"})}),I.jsx(I3,{src:iC})]}),I.jsx(Zm,{className:"Categories"}),I.jsx(hv,{children:"Here At the Beach we believe that style marries function. Yes, we do have the classic beach stuff here, but seriously, they are so dang cool looking though."}),I.jsx(hv,{children:"You've probably had a pair of flip flops before, but we gaurantee you that you've never had a pair of flip flops like ours. You've probably had water guns before, but holycrap, have you seen our water guns? They're so cool."}),I.jsx(gS,{})]}),x3=""+new URL("logo-CRC5MJZq.png",import.meta.url).href,k3=B.div`
 	position: sticky;
 	top: 0;
