@@ -57,10 +57,10 @@ const AddProductForm = () => {
 		<StyledForm onSubmit={handleSubmit}>
 			<h3>Add Product</h3>
 			<input type="file" name="file" onChange={handleChange} />
-			<input type="text" name="name" placeholder="Product name" onChange={handleChange} />
-			<input type="text" name="desc" placeholder="Product description" onChange={handleChange} />
-			<input type="text" name="price" placeholder="Product price" onChange={handleChange} />
-			<input type="text" name="category" placeholder="Product category" onChange={handleChange} />
+			<input type="text" name="name" placeholder="Product name" onChange={handleChange} required />
+			<input type="text" name="desc" placeholder="Product description" onChange={handleChange} required />
+			<input type="text" name="price" placeholder="Product price" onChange={handleChange} required />
+			<input type="text" name="category" placeholder="Product category" onChange={handleChange} required />
 			<SaveButton type="submit">Save</SaveButton>
 		</StyledForm>
 	);
