@@ -21,6 +21,8 @@ const ModalContent = styled.div`
 	width: 80vw;
 	height: 70vh;
 	font-size: 1, 5rem;
+	overflow-y: auto;
+	overflow-x: hidden;
 `;
 
 const IncreaseButton = styled.button`
@@ -50,19 +52,51 @@ const CloseButton = styled.button`
 	border-radius: 5px;
 	padding: 0.5rem;
 	cursor: pointer;
+	font-size: 1.5rem;
+	font-family: "Monomaniac One", sans-serif;
+	letter-spacing: 1px;
+	width: 8rem;
+	border: 1px solid rgb(40 129 168);
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+`;
+const CheckoutButton = styled.button`
+	font-size: 1.5rem;
+	background: #54ff29;
+	color: #1a1a1a;
+	border: none;
+	border-radius: 5px;
+	padding: 0.5rem;
+	cursor: pointer;
+	font-family: "Monomaniac One", sans-serif;
+	letter-spacing: 1px;
+	width: 8rem;
+	border: 1px solid rgb(40 129 168);
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 `;
 
 const ButtonWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
-	gap: 1rem;
-	justfiy-content: space-between;
+	gap: 1.65rem;
+	justify-content: center;
 	margin: 0 auto;
+	padding-bottom: 2rem;
+`;
+const CheckoutWrapper = styled.div`
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	gap: 1.65rem;
+	bottom: 0;
+	left: 0;
+	justify-content: space-evenly;
+	width: 100%;
+	padding-bottom: 2rem;
 `;
 
 const ProductImage = styled.img`
-	max-width: 380px;
-	max-height: 380px;
+	max-width: 180px;
+	max-height: 180px;
 	border-radius: 10px;
 	border: 1px solid rgb(40 129 168);
 	margin: 0 auto;
@@ -71,6 +105,26 @@ const ProductImage = styled.img`
 		max-height: 180px;
 	}
 `;
+
+const StyledText = styled.p`
+	font-size: 1.5rem;
+	font-family: "Monomaniac One", sans-serif;
+	letter-spacing: 1px;
+	width: 100%;
+	text-align: center;
+	color: #2881a8;
+`;
+
+const ProductWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+
+	@media (max-width: 568px) {
+		flex-direction: column;
+	}
+`;
+
 const CartModal = () => {
 	const cart = useStore((state) => state.cart);
 	const removeFromCart = useStore((state) => state.removeFromCart);
@@ -82,17 +136,24 @@ const CartModal = () => {
 		console.log("trying to close modal");
 	};
 
+	const handleCheckout = () => {
+		console.log("checkout");
+	};
+
 	return (
 		<Modal>
 			<ModalContent>
 				{cart && cart.length > 0 ? (
 					cart.map((product) => (
 						<div key={product.id}>
-							<h3>
+							<StyledText>
 								{product.name} - {product.price}
-							</h3>
-							<ProductImage src={product.imageUrl} alt={product.name} />
-							<p>Quantity: {product.quantity}</p>
+							</StyledText>
+							<ProductWrapper>
+								<ProductImage src={product.imageUrl} alt={product.name} />
+								<StyledText>{product.desc} </StyledText>
+							</ProductWrapper>
+							<StyledText>Quantity: {product.quantity}</StyledText>
 							<ButtonWrapper>
 								<DecreaseButton onClick={() => removeFromCart(product.id)}>-</DecreaseButton>
 								<IncreaseButton onClick={() => addToCart(product)}>+</IncreaseButton>
@@ -101,9 +162,12 @@ const CartModal = () => {
 					))
 				) : (
 					// if cart is empty render this instead, hence the : operator
-					<p>Your cart is empty.</p>
+					<StyledText>Your cart is empty.</StyledText>
 				)}
-				<CloseButton onClick={handleClose}>Close</CloseButton>
+				<CheckoutWrapper>
+					<CloseButton onClick={handleClose}>Close</CloseButton>
+					<CheckoutButton onClick={handleCheckout}>Checkout</CheckoutButton>
+				</CheckoutWrapper>
 			</ModalContent>
 		</Modal>
 	);
