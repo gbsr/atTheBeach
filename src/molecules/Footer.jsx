@@ -36,7 +36,7 @@ const StyledFooterContent = styled.div`
 
 const StyledLink = styled(Link)`
 	color: #e7d5ba;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	text-decoration: none;
 	padding: 1rem;
 `;
@@ -48,6 +48,20 @@ const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
+	align-items: flex-end;
+`;
+
+const TotalItem = styled.div`
+	width: 1.65rem;
+	height: 1.65rem;
+	border-radius: 50%;
+	border: 2px solid #e7d5ba;
+	background: #ff0000;
+	position: absolute;
+	color: #e7d5ba;
+	font-size: 1.5rem;
+	bottom: 2.85rem;
+	left: 17.5rem;
 `;
 
 const Footer = () => {
@@ -55,6 +69,7 @@ const Footer = () => {
 	const logOut = useStore((state) => state.logOut);
 	const setCartModalIsOpen = useStore((state) => state.setCartModalIsOpen);
 	const cartModalIsOpen = useStore((state) => state.cartModalIsOpen);
+	const cart = useStore((state) => state.cart);
 
 	const handleLogOut = () => {
 		logOut();
@@ -64,6 +79,9 @@ const Footer = () => {
 		setCartModalIsOpen(true);
 	};
 
+	// calculate total items in cart
+	const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
 	return (
 		<StyledFooter>
 			<BgWave />
@@ -72,6 +90,7 @@ const Footer = () => {
 					<StyledLink to="/">Home</StyledLink>
 					<CartButton onClick={handleCart}>
 						<Cart src={CartIcon} alt="Cart" />
+						{totalItems > 0 && <TotalItem>{totalItems}</TotalItem>}
 					</CartButton>
 					{isLoggedIn ? (
 						<StyledLink to="/" onClick={handleLogOut}>
