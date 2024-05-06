@@ -29,12 +29,12 @@ const StyledWaveTop = styled.img`
 `;
 const StyledWaveBottom = styled.img`
 	width: 260vw;
-	transform: translateY(-5rem);
+	transform: translateY(-8rem);
 `;
 
 const RightTextContainer = styled.div`
 	background: #118ab0;
-	transform: translatey(-5rem);
+	transform: translatey(-8rem);
 	padding-block: 1rem;
 	width: 100%;
 `;
