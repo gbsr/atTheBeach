@@ -60,8 +60,13 @@ const TotalItem = styled.div`
 	position: absolute;
 	color: #e7d5ba;
 	font-size: 1.5rem;
-	bottom: 2.85rem;
-	left: 17.5rem;
+	bottom: 3rem;
+	left: 3rem;
+`;
+
+const CartWrapper = styled.div`
+	position: relative;
+	display: inline-block;
 `;
 
 const Footer = () => {
@@ -89,8 +94,10 @@ const Footer = () => {
 				<Wrapper>
 					<StyledLink to="/">Home</StyledLink>
 					<CartButton onClick={handleCart}>
-						<Cart src={CartIcon} alt="Cart" />
-						{totalItems > 0 && <TotalItem>{totalItems}</TotalItem>}
+						<CartWrapper>
+							<Cart src={CartIcon} alt="Cart" />
+							{totalItems > 0 && <TotalItem>{totalItems}</TotalItem>}
+						</CartWrapper>
 					</CartButton>
 					{isLoggedIn ? (
 						<StyledLink to="/" onClick={handleLogOut}>
