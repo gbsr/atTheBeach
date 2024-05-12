@@ -18,7 +18,7 @@ const Modal = styled.div`
 const ModalContent = styled.div`
 	background-color: white;
 	padding: 20px;
-	margin-top: 12rem;
+	margin-top: 4rem;
 	border-radius: 10px;
 	width: 80vw;
 	height: 67vh;
@@ -143,7 +143,7 @@ const CartModal = () => {
 	};
 	return (
 		<Modal>
-			<ModalContent>
+			<ModalContent className="ModalContent">
 				{cart && cart.length > 0 ? (
 					cart.map((product) => (
 						<div key={product.id}>
@@ -155,7 +155,7 @@ const CartModal = () => {
 								<StyledText>{product.desc} </StyledText>
 							</ProductWrapper>
 							<StyledText>Quantity: {product.quantity}</StyledText>
-							<ButtonWrapper>
+							<ButtonWrapper className="ProductWrapper">
 								<DecreaseButton onClick={() => removeFromCart(product.id)}>-</DecreaseButton>
 								<IncreaseButton onClick={() => addToCart(product)}>+</IncreaseButton>
 							</ButtonWrapper>
@@ -165,7 +165,7 @@ const CartModal = () => {
 					// if cart is empty render this instead, hence the : operator
 					<StyledText>Your cart is empty.</StyledText>
 				)}
-				<CheckoutWrapper>
+				<CheckoutWrapper className="CheckoutWrapper">
 					<CloseButton onClick={handleClose}>Close</CloseButton>
 					<Link to="/checkout" onClick={handleCheckout}>
 						<CheckoutButton>Checkout</CheckoutButton>

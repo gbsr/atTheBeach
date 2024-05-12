@@ -15,7 +15,7 @@ const StyledForm = styled.form`
 	margin: 0 auto;
 	overflow-y: hidden;
 	position: fixed;
-	top: 50%;
+	top: 45%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 `;
