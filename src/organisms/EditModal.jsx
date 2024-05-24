@@ -42,11 +42,17 @@ const CloseButton = styled.button`
 	border-radius: 5px;
 	padding: 0.5rem;
 	cursor: pointer;
+	z-index: 1000000;
+`;
+
+const StyledP = styled.p`
+	font-size: 1rem;
 `;
 
 const EditModal = ({ product, onClose }) => {
 	const { setFile, updateProduct } = useStore();
 	const { category } = useParams();
+	const [errors, setErrors] = useState({});
 	const [productDetails, setProductDetails] = useState({
 		name: "",
 		desc: "",
@@ -75,48 +81,81 @@ const EditModal = ({ product, onClose }) => {
 	}
 
 	async function handleSubmit(event) {
-		event.preventDefault();
-		const updatedProduct = {
-			...productDetails,
-			category: category,
-		};
-		await updateProduct(category, product.id, updatedProduct);
-	}
+    event.preventDefault();
 
+    let newErrors = {};
+
+    if (!productDetails.name) {
+      newErrors.name = "Please enter a product name";
+    }
+    if (!productDetails.desc) {
+      newErrors.desc = "Please enter a product description";
+    }
+		// same here, we want to add a symbol or something perhaps..so regex it is!
+		const priceRegex = /^[0-9\s$€£¥]*$/;
+		if (!product.price || !priceRegex.test(product.price)) {
+			newErrors.price = "Please enter a valid product price";
+		}
+	
+    if (!productDetails.category) {
+      newErrors.category = "No category selected";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    const updatedProduct = {
+      ...productDetails,
+      category: category,
+    };
+    await updateProduct(category, product.id, updatedProduct);
+  }
 	return (
-		<Modal>
-			<ModalContent>
-				<StyledForm onSubmit={handleSubmit}>
-					<h3>{productDetails.name}</h3>
-					<input
-						type="text"
-						name="name"
-						placeholder="Product name"
-						onChange={handleChange}
-						value={productDetails.name}
-					/>
-					<input
-						type="text"
-						name="desc"
-						placeholder="Product description"
-						onChange={handleChange}
-						value={productDetails.desc}
-					/>
-					<input
-						type="text"
-						name="price"
-						placeholder="Product price"
-						onChange={handleChange}
-						value={productDetails.price}
-					/>
-					<input type="text" name="category" placeholder="Product category" onChange={handleChange} value={category} />
-					<SaveButton type="submit">Save</SaveButton>
-				</StyledForm>
+    <Modal>
+      <ModalContent>
+        <StyledForm onSubmit={handleSubmit}>
+          <h3>{productDetails.name}</h3>
+          <input
+            type="text"
+            name="name"
+            placeholder="Product name"
+            onChange={handleChange}
+            value={productDetails.name}
+          />
+          {errors.name && <StyledP>{errors.name}</StyledP>}
+          <input
+            type="text"
+            name="desc"
+            placeholder="Product description"
+            onChange={handleChange}
+            value={productDetails.desc}
+          />
+          {errors.desc && <StyledP>{errors.desc}</StyledP>}
+          <input
+            type="text"
+            name="price"
+            placeholder="Product price"
+            onChange={handleChange}
+            value={productDetails.price}
+          />
+          {errors.price && <StyledP>{errors.price}</StyledP>}
+          <input
+            type="text"
+            name="category"
+            placeholder="Product category"
+            onChange={handleChange}
+            value={productDetails.category}
+          />
+          {errors.category && <StyledP>{errors.category}</StyledP>}
+          <SaveButton type="submit">Save</SaveButton>
+        </StyledForm>
 
-				<CloseButton onClick={onClose}>Close</CloseButton>
-			</ModalContent>
-		</Modal>
-	);
+        <CloseButton onClick={onClose}>Close</CloseButton>
+      </ModalContent>
+    </Modal>
+  );
 };
 
 export default EditModal;

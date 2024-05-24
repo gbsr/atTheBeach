@@ -54,9 +54,11 @@ const AddProductForm = () => {
     if (!product.desc) {
       newErrors.desc = "Please enter a product description";
     }
-    if (!product.price || isNaN(product.price)) {
-      newErrors.price = "Please enter a valid product price";
-    }
+		// because we want to add a symbol or something perhaps..so regex it is!
+    const priceRegex = /^[0-9\s$€£¥]*$/;
+  if (!product.price || !priceRegex.test(product.price)) {
+    newErrors.price = "Please enter a valid product price";
+  }
     if (!product.category) {
       newErrors.category = "No category selected";
     }
