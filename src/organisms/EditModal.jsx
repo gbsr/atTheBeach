@@ -19,6 +19,7 @@ const ModalContent = styled.div`
 	background-color: white;
 	padding: 20px;
 	border-radius: 10px;
+	min-width: 320px;
 `;
 
 const StyledForm = styled.form`
@@ -62,10 +63,10 @@ const EditModal = ({ product, onClose }) => {
 
 	useEffect(() => {
 		setProductDetails({
-			name: product.name,
-			desc: product.desc,
-			price: product.price,
-			category: product.category,
+			name: product.name || "",
+			desc: product.desc || "",
+			price: product.price || "",
+			category: product.category || "",
 		});
 	}, [product]);
 
