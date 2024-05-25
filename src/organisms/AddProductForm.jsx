@@ -17,7 +17,7 @@ const SaveButton = styled.button`
 	border: none;
 	border-radius: 5px;
 	padding: 0.5rem;
-	z-index: 1000000;
+	z-index: 10;
 `;
 
 const AddProductForm = () => {

@@ -23,13 +23,20 @@ const GlobalStyle = createGlobalStyle`
 		overflow-x: hidden;
 		
 	}
-
+	label {
+		font-size: 1rem;
+	}
+	button {
+		cursor: pointer;
+	}
+	
 	a {
 		text-decoration: none;
 	}
 	footer {
 		position: absolute;
 		bottom: 0px;
+		pointer-events: none;
 		}
 	}
 `;

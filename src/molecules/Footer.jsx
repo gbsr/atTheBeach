@@ -1,9 +1,20 @@
 import styled from "styled-components";
-import BgWave from "../atoms/Wave.jsx";
+// import BgWave from "../atoms/Wave.jsx";
 import { Link } from "react-router-dom";
 import { useStore } from "../utilities/store.js";
 import CartModal from "../organisms/CartModal.jsx";
 import CartIcon from "../assets/img/misc/cart.svg";
+import bg from '../assets/img/footer/footer.svg'; 
+
+const StyledWave = styled.img`
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+	width: 325%;
+	height: auto;
+	transform: translateY(1.25rem);	
+`;
 
 const Cart = styled.img`
 	width: 80px;
@@ -17,6 +28,7 @@ const CartButton = styled.button`
 	border: none;
 	cursor: pointer;
 	padding: 0;
+	pointer-events: auto;
 `;
 
 const StyledFooter = styled.footer`
@@ -32,6 +44,7 @@ const StyledFooter = styled.footer`
 const StyledFooterContent = styled.div`
 	background: #118ab0
 	height: 100%;
+	pointer-events: none;
 `;
 
 const StyledLink = styled(Link)`
@@ -39,6 +52,7 @@ const StyledLink = styled(Link)`
 	font-size: 1.25rem;
 	text-decoration: none;
 	padding: 1rem;
+	pointer-events: auto;
 `;
 
 const Wrapper = styled.div`
@@ -49,6 +63,7 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 	flex-direction: row;
 	align-items: flex-end;
+	pointer-events: none;
 `;
 
 const TotalItem = styled.div`
@@ -89,7 +104,7 @@ const Footer = () => {
 
 	return (
 		<StyledFooter>
-			<BgWave />
+			<StyledWave src={bg} alt="wave" />
 			<StyledFooterContent>
 				<Wrapper>
 					<StyledLink to="/">Home</StyledLink>
