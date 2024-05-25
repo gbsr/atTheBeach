@@ -2539,6 +2539,7 @@ Content-Type: `+u.contentType+`\r
 	background-color: white;
 	padding: 20px;
 	border-radius: 10px;
+	min-width: 320px;
 `,hL=B.form`
 	display: flex;
 	flex-direction: column;
@@ -2559,7 +2560,7 @@ Content-Type: `+u.contentType+`\r
 	z-index: 1000000;
 `,Ll=B.p`
 	font-size: 1rem;
-`,pL=({product:e,onClose:t})=>{const{setFile:n,updateProduct:r}=Be(),{category:i}=hw(),[o,s]=A.useState({}),[a,l]=A.useState({name:"",desc:"",price:"",category:""});A.useEffect(()=>{l({name:e.name,desc:e.desc,price:e.price,category:e.category})},[e]);function u(h){h.target.name==="file"?n(h.target.files[0]):l({...a,[h.target.name]:h.target.value})}async function c(h){h.preventDefault();let d={};a.name||(d.name="Please enter a product name"),a.desc||(d.desc="Please enter a product description");const p=/^[0-9\s$€£¥]*$/;if((!e.price||!p.test(e.price))&&(d.price="Please enter a valid product price"),a.category||(d.category="No category selected"),Object.keys(d).length>0){s(d);return}const g={...a,category:i};await r(i,e.id,g)}return S.jsx(uL,{children:S.jsxs(cL,{children:[S.jsxs(hL,{onSubmit:c,children:[S.jsx("h3",{children:a.name}),S.jsx("input",{type:"text",name:"name",placeholder:"Product name",onChange:u,value:a.name}),o.name&&S.jsx(Ll,{children:o.name}),S.jsx("input",{type:"text",name:"desc",placeholder:"Product description",onChange:u,value:a.desc}),o.desc&&S.jsx(Ll,{children:o.desc}),S.jsx("input",{type:"text",name:"price",placeholder:"Product price",onChange:u,value:a.price}),o.price&&S.jsx(Ll,{children:o.price}),S.jsx("input",{type:"text",name:"category",placeholder:"Product category",onChange:u,value:a.category}),o.category&&S.jsx(Ll,{children:o.category}),S.jsx(dL,{type:"submit",children:"Save"})]}),S.jsx(fL,{onClick:t,children:"Close"})]})})},mL=J1`
+`,pL=({product:e,onClose:t})=>{const{setFile:n,updateProduct:r}=Be(),{category:i}=hw(),[o,s]=A.useState({}),[a,l]=A.useState({name:"",desc:"",price:"",category:""});A.useEffect(()=>{l({name:e.name||"",desc:e.desc||"",price:e.price||"",category:e.category||""})},[e]);function u(h){h.target.name==="file"?n(h.target.files[0]):l({...a,[h.target.name]:h.target.value})}async function c(h){h.preventDefault();let d={};a.name||(d.name="Please enter a product name"),a.desc||(d.desc="Please enter a product description");const p=/^[0-9\s$€£¥]*$/;if((!e.price||!p.test(e.price))&&(d.price="Please enter a valid product price"),a.category||(d.category="No category selected"),Object.keys(d).length>0){s(d);return}const g={...a,category:i};await r(i,e.id,g)}return S.jsx(uL,{children:S.jsxs(cL,{children:[S.jsxs(hL,{onSubmit:c,children:[S.jsx("h3",{children:a.name}),S.jsx("input",{type:"text",name:"name",placeholder:"Product name",onChange:u,value:a.name}),o.name&&S.jsx(Ll,{children:o.name}),S.jsx("input",{type:"text",name:"desc",placeholder:"Product description",onChange:u,value:a.desc}),o.desc&&S.jsx(Ll,{children:o.desc}),S.jsx("input",{type:"text",name:"price",placeholder:"Product price",onChange:u,value:a.price}),o.price&&S.jsx(Ll,{children:o.price}),S.jsx("input",{type:"text",name:"category",placeholder:"Product category",onChange:u,value:a.category}),o.category&&S.jsx(Ll,{children:o.category}),S.jsx(dL,{type:"submit",children:"Save"})]}),S.jsx(fL,{onClick:t,children:"Close"})]})})},mL=J1`
   0% {
     filter: brightness(100%);
   }
